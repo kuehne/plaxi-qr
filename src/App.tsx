@@ -44,7 +44,7 @@ function App() {
       <div className="flex justify-center p-4">
         <QRCode value={value} size={400} level="Q" id={QR_CODE_ELEMENT_ID} />
       </div>
-      <div className="flex print:hidden justify-center">
+      <div className="mt-4 flex justify-center print:hidden">
         <Button action={handleDownload} label="Download" icon={Icon.DOWLOAD} />
         <Button action={() => window.print()} label="Print" icon={Icon.PRINT} />
       </div>
