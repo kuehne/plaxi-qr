@@ -1,53 +1,50 @@
-import { Dispatch, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import QRCode from "react-qr-code";
-import { Icon } from "./Icon.enum";
-import Button from "./components/Button";
+import { Constants } from "./Constants";
+import AdvancedOptions from "./components/AdvancedOptions";
+import ButtonGroup from "./components/ButtonGroup";
+import Query from "./components/Query";
+import { QrState } from "./qr-state";
 
-const QR_CODE_ELEMENT_ID = "qr-code";
-function Query({
-  value,
-  handleChange,
-}: Readonly<{
-  value: string;
-  handleChange: Dispatch<React.SetStateAction<string>>;
-}>) {
-  return (
-    <input
-      placeholder="Please enter your text"
-      value={value}
-      maxLength={2900} // see: https://github.com/rosskhanas/react-qr-code/issues/255
-      className="mb-4 block w-full rounded-lg border border-gray-300 bg-white p-3 text-xl text-black focus:border-blue-500 focus:ring-blue-500"
-      onChange={(e) => handleChange(e.target.value)}
-    />
-  );
-}
-
-function handleDownload(): void {
-  const svg = document.getElementById(QR_CODE_ELEMENT_ID)!;
-  const base64Content = btoa(
-    decodeURIComponent(encodeURIComponent(svg.outerHTML)),
-  );
-  const link = document.createElement("a");
-  link.download = "qr.svg";
-  link.href = `data:image/svg+xml;base64,${base64Content}`;
-  link.click();
-  link.remove();
+function handleInputChange(
+  value: string,
+  setState: Dispatch<SetStateAction<QrState>>,
+): void {
+  setState((state) => ({
+    ...state,
+    value,
+  }));
 }
 
 function App() {
-  const [value, setValue] = useState("");
+  const [state, setState] = useState<QrState>({
+    value: "",
+    fgColor: Constants.FOREGROUND_COLOR,
+    bgColor: Constants.BACKGROUND_COLOR,
+  });
   return (
     <div className="container">
       <div className="print:hidden">
-        <Query value={value} handleChange={setValue} />
+        <Query
+          value={state.value!}
+          handleChange={(newValue: string) =>
+            handleInputChange(newValue, setState)
+          }
+        />
       </div>
       <div className="flex justify-center p-4">
-        <QRCode value={value} size={400} level="Q" id={QR_CODE_ELEMENT_ID} />
+        <QRCode
+          value={state.value!}
+          size={400}
+          fgColor={state.fgColor}
+          bgColor={state.bgColor}
+          imageRendering="png"
+          level="Q"
+          id={Constants.QR_CODE_ELEMENT_ID}
+        />
       </div>
-      <div className="mt-4 flex justify-center print:hidden">
-        <Button action={handleDownload} label="Download" icon={Icon.DOWLOAD} />
-        <Button action={() => window.print()} label="Print" icon={Icon.PRINT} />
-      </div>
+      <ButtonGroup />
+      <AdvancedOptions state={state} setState={setState} />
     </div>
   );
 }
