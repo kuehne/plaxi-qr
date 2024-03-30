@@ -1,6 +1,9 @@
 import { Dispatch, useState } from "react";
 import QRCode from "react-qr-code";
+import { Icon } from "./Icon.enum";
+import Button from "./components/Button";
 
+const QR_CODE_ELEMENT_ID = "qr-code";
 function Query({
   value,
   handleChange,
@@ -19,13 +22,31 @@ function Query({
   );
 }
 
+function handleDownload(): void {
+  const svg = document.getElementById(QR_CODE_ELEMENT_ID)!;
+  const base64Content = btoa(
+    decodeURIComponent(encodeURIComponent(svg.outerHTML)),
+  );
+  const link = document.createElement("a");
+  link.download = "qr.svg";
+  link.href = `data:image/svg+xml;base64,${base64Content}`;
+  link.click();
+  link.remove();
+}
+
 function App() {
   const [value, setValue] = useState("");
   return (
     <div className="container">
-      <Query value={value} handleChange={setValue} />
+      <div className="print:hidden">
+        <Query value={value} handleChange={setValue} />
+      </div>
       <div className="flex justify-center p-4">
-        <QRCode value={value} size={400} />
+        <QRCode value={value} size={400} level="Q" id={QR_CODE_ELEMENT_ID} />
+      </div>
+      <div className="flex print:hidden justify-center">
+        <Button action={handleDownload} label="Download" icon={Icon.DOWLOAD} />
+        <Button action={() => window.print()} label="Print" icon={Icon.PRINT} />
       </div>
     </div>
   );
