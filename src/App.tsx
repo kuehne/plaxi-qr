@@ -21,12 +21,13 @@ function App() {
     value: "",
     fgColor: Constants.FOREGROUND_COLOR,
     bgColor: Constants.BACKGROUND_COLOR,
+    size: Constants.SIZE,
   });
   return (
     <div className="container">
       <div className="print:hidden">
         <Query
-          value={state.value!}
+          value={state.value}
           handleChange={(newValue: string) =>
             handleInputChange(newValue, setState)
           }
@@ -34,8 +35,8 @@ function App() {
       </div>
       <div className="flex justify-center p-4">
         <QRCode
-          value={state.value!}
-          size={400}
+          value={state.value}
+          size={state.size}
           fgColor={state.fgColor}
           bgColor={state.bgColor}
           level="Q"
