@@ -24,8 +24,8 @@ function App() {
     size: Constants.SIZE,
   });
   return (
-    <div className="container">
-      <div className="print:hidden">
+    <div className="container flex justify-between flex-col h-full">
+      <div className="print:hidden py-8 px-2">
         <Query
           value={state.value}
           handleChange={(newValue: string) =>
@@ -33,18 +33,23 @@ function App() {
           }
         />
       </div>
-      <div className="flex justify-center p-4">
+      <div className="flex justify-center p-2">
         <QRCode
           value={state.value}
-          size={state.size}
+          size={Math.min(
+            state.size,
+            document.getElementById("root")?.clientWidth ?? state.size,
+          )}
           fgColor={state.fgColor}
           bgColor={state.bgColor}
           level="Q"
           id={Constants.QR_CODE_ELEMENT_ID}
         />
       </div>
-      <ButtonGroup />
-      <AdvancedOptions state={state} setState={setState} />
+      <div className="px-2">
+        <ButtonGroup />
+        <AdvancedOptions state={state} setState={setState} />
+      </div>
     </div>
   );
 }
