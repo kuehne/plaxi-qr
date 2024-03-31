@@ -1,5 +1,5 @@
-import { Constants } from "../Constants";
-import { Icon } from "../Icon.enum";
+import { Constants } from "../model/Constants.class";
+import { Icon } from "../model/Icon.enum";
 import Button from "./Button";
 
 function handleDownload(): void {

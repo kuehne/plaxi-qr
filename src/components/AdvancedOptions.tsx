@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { QrState } from "../qr-state";
+import { QrState } from "../model/QrState.interface";
+import ColorPicker from "./ColorPicker";
 
 interface AdvancedOptionsProps {
   state: QrState;
@@ -12,45 +13,19 @@ export default function AdvancedOptions({
 }: Readonly<AdvancedOptionsProps>) {
   return (
     <div className="print:hidden">
-      <form className="mx-auto flex max-w-sm justify-center gap-2">
-        <div className="mb-5 flex items-center justify-center gap-1">
-          <label
-            htmlFor="foreground"
-            className="block text-sm font-medium text-gray-900"
-          >
-            Foreground color:
-          </label>
-          <input
-            id="foreground"
-            type="color"
-            value={state.fgColor}
-            onChange={(e) =>
-              setState((state) => ({
-                ...state,
-                fgColor: e.target.value,
-              }))
-            }
-          />
-        </div>
-        <div className="mb-5 flex items-center justify-center gap-1">
-          <label
-            htmlFor="background"
-            className="block text-sm font-medium text-gray-900"
-          >
-            Background color:
-          </label>
-          <input
-            id="background"
-            type="color"
-            value={state.bgColor}
-            onChange={(e) =>
-              setState((state) => ({
-                ...state,
-                bgColor: e.target.value,
-              }))
-            }
-          />
-        </div>
+      <form className="mx-auto flex justify-center gap-2">
+        <ColorPicker
+          color="fgColor"
+          setState={setState}
+          state={state}
+          label="Foreground color"
+        />
+        <ColorPicker
+          color="bgColor"
+          setState={setState}
+          state={state}
+          label="Background color"
+        />
       </form>
     </div>
   );

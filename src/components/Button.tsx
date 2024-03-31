@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react";
-import { Icon } from "../Icon.enum";
+import { Icon } from "../model/Icon.enum";
 
 interface ButtonProps {
   action: MouseEventHandler<HTMLButtonElement>;

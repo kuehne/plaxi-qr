@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import QRCode from "react-qr-code";
-import { Constants } from "./Constants";
 import AdvancedOptions from "./components/AdvancedOptions";
 import ButtonGroup from "./components/ButtonGroup";
 import Query from "./components/Query";
-import { QrState } from "./qr-state";
+import { Constants } from "./model/Constants.class";
+import { QrState } from "./model/QrState.interface";
 
 function handleInputChange(
   value: string,
@@ -25,7 +25,7 @@ function App() {
   });
   return (
     <div className="container flex justify-between flex-col h-full">
-      <div className="print:hidden py-8 px-2">
+      <div className="print:hidden py-4 px-2">
         <Query
           value={state.value}
           handleChange={(newValue: string) =>
