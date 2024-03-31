@@ -1,5 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
+import { Constants } from "../model/Constants.class";
+import { Icon } from "../model/Icon.enum";
 import { QrState } from "../model/QrState.interface";
+import IconButton from "./IconButton";
 
 interface ColorPickerProps {
   state: QrState;
@@ -30,6 +33,20 @@ export default function ColorPicker({
           setState((state) => {
             const newState = { ...state };
             newState[color] = e.target.value;
+            return newState;
+          })
+        }
+      />
+      <IconButton
+        icon={Icon.UNDO}
+        description={`Reset ${label.toLowerCase()}`}
+        handleClick={() =>
+          setState((state: QrState) => {
+            const newState = { ...state };
+            newState[color] =
+              color === "bgColor"
+                ? Constants.BACKGROUND_COLOR
+                : Constants.FOREGROUND_COLOR;
             return newState;
           })
         }
