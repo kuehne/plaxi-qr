@@ -38,7 +38,6 @@ function App() {
           size={400}
           fgColor={state.fgColor}
           bgColor={state.bgColor}
-          imageRendering="png"
           level="Q"
           id={Constants.QR_CODE_ELEMENT_ID}
         />
