@@ -24,8 +24,8 @@ function App() {
     size: Constants.SIZE,
   });
   return (
-    <div className="container flex justify-between flex-col h-full">
-      <div className="print:hidden py-4 px-2">
+    <div className="container flex h-full flex-col justify-between">
+      <div className="px-2 py-4 print:hidden">
         <Query
           value={state.value}
           handleChange={(newValue: string) =>

@@ -15,7 +15,7 @@ export default function IconButton({
     <button
       type="button"
       onClick={() => handleClick()}
-      className="text-white bg-black hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300  rounded-full p-1.5 text-center inline-flex items-center me-2"
+      className="me-2 inline-flex items-center rounded-full bg-black p-1.5  text-center text-white hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300"
     >
       <SvgIcon icon={icon} className="size-4" />
       <span className="sr-only">{description}</span>
