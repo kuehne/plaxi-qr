@@ -13,7 +13,7 @@ export default function AdvancedOptions({
 }: Readonly<AdvancedOptionsProps>) {
   return (
     <div className="print:hidden">
-      <form className="mx-auto flex justify-center gap-2">
+      <form className="mx-auto flex justify-center gap-2 flex-wrap">
         <ColorPicker
           color="fgColor"
           setState={setState}
