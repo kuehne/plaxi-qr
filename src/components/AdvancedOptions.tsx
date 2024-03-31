@@ -9,7 +9,7 @@ interface AdvancedOptionsProps {
 export default function AdvancedOptions({
   state,
   setState,
-}: AdvancedOptionsProps) {
+}: Readonly<AdvancedOptionsProps>) {
   return (
     <div className="print:hidden">
       <form className="mx-auto flex max-w-sm justify-center gap-2">
