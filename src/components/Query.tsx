@@ -1,12 +1,11 @@
 import { ChangeEvent } from "react";
 
-export default function Query({
-  value,
-  handleChange,
-}: Readonly<{
+interface QueryProps {
   value: string;
   handleChange: (newValue: string) => void;
-}>) {
+}
+
+export default function Query({ value, handleChange }: Readonly<QueryProps>) {
   return (
     <input
       placeholder="Please enter your text"
