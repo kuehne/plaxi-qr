@@ -23,7 +23,7 @@ function useQrWrapperClientWidth() {
 export default function QrWrapper({ state }: Readonly<QrWrapperProps>) {
   const clientWidth = useQrWrapperClientWidth();
   return (
-    <div id="qr-wrapper" className="w-full flex justify-center">
+    <div id="qr-wrapper" className="flex w-full justify-center">
       <QRCode
         value={state.value}
         size={Math.min(state.size, clientWidth, window.innerWidth)}
