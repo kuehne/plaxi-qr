@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import QRCode from "react-qr-code";
 import AdvancedOptions from "./components/AdvancedOptions";
 import ButtonGroup from "./components/ButtonGroup";
+import QrWrapper from "./components/QrWrapper";
 import Query from "./components/Query";
 import { Constants } from "./model/Constants.class";
 import { QrState } from "./model/QrState.interface";
@@ -33,18 +33,8 @@ function App() {
           }
         />
       </div>
-      <div className="flex justify-center p-2">
-        <QRCode
-          value={state.value}
-          size={Math.min(
-            state.size,
-            document.getElementById("root")?.clientWidth ?? state.size,
-          )}
-          fgColor={state.fgColor}
-          bgColor={state.bgColor}
-          level="Q"
-          id={Constants.QR_CODE_ELEMENT_ID}
-        />
+      <div className="px-2">
+        <QrWrapper state={state} />
       </div>
       <div className="px-2">
         <ButtonGroup />
