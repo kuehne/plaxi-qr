@@ -17,7 +17,7 @@ function handleDownload(): void {
 export default function ButtonGroup() {
   return (
     <div className="mt-4 flex justify-center print:hidden">
-      <Button action={handleDownload} label="Download" icon={Icon.DOWLOAD} />
+      <Button action={handleDownload} label="Download" icon={Icon.DOWNLOAD} />
       <Button action={() => window.print()} label="Print" icon={Icon.PRINT} />
     </div>
   );
